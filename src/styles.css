@@ -1,0 +1,82 @@
+body {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #121212;
+  font-family: sans-serif;
+  gap: 24px;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+#dropzone {
+  width: 400px;
+  height: 200px;
+  border: 2px dashed #555;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #ccc;
+  cursor: pointer;
+  background-color: #222;
+  transition: background-color 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+#dropzone p {
+  position: absolute;
+  width: fit-content;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  color: #555;
+}
+
+#dropzone img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+#dropzone:hover {
+  background-color: #333;
+}
+
+#idioma {
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #222;
+  color: #ccc;
+}
+
+#resultadoOCR {
+  width: 90%;
+  height: 200px;
+  resize: none;
+  border: 1px solid #555;
+  padding: 10px;
+  font-family: monospace;
+  background-color: #222;
+  color: #ccc;
+}
+
+.dev {
+  text-align: center;
+  color: #555;
+  margin-top: -12px;
+}

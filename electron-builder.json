@@ -1,0 +1,6 @@
+{
+  "icon": "./public/icon.png",
+  "linux": {
+    "category": "Graphics"
+  }
+}
