@@ -1,4 +1,8 @@
-**# Image OCR**
+# Fast Latex
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jefersonapps/fast-latex/main/public/icon.png" alt="Fast Latex Icon" width="300"/>
+</p>
 
 **Introdução**
 
