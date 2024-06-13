@@ -1,47 +1,68 @@
-const dropzone = document.getElementById("dropzone");
-const selectIdioma = document.getElementById("idioma");
-const imagemPreview = document.getElementById("imagemPreview");
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    packages: {'[+]': ['amsmath']}
+  },
+  svg: {
+    fontCache: 'global'
+  },
+  options: {
+    skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  },
+};
 
-dropzone.addEventListener("paste", (event) => {
-  const idiomaSelecionado = selectIdioma.value;
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js';
+script.async = true;
+script.id = 'MathJax-script';
 
-  const items = event.clipboardData.items;
-  let blob = null;
+script.onload = () => {
+  const container = document.getElementById("container");
+  const latexRender = document.getElementById("latex-render");
+  const latexCode = document.getElementById("latex-code");
+  const textColor = document.getElementById("text-color");
+  const backgroundColor = document.getElementById("background-color");
+  const externalColor = document.getElementById("external-color");
+  const borderColor = document.getElementById("border-color");
+  const borderRadius = document.getElementById("border-radius");
+  const textSize = document.getElementById("text-size");
+  const lineStyle = document.getElementById("line-style");
+  const borderWidth = document.getElementById("border-width");
 
-  for (let i = 0; i < items.length; i++) {
-    if (items[i].type.indexOf("image") !== -1) {
-      blob = items[i].getAsFile();
-      break;
-    }
+  function updateStyles() {
+    latexRender.style.color = textColor.value ?? "black";
+    latexRender.style.backgroundColor = backgroundColor.value ?? "white";
+    container.style.backgroundColor = externalColor.value ?? "white";
+    latexRender.style.borderRadius = `${borderRadius.value}px`;
+    latexRender.style.fontSize = `${textSize.value}px`;
+    latexRender.style.borderStyle = lineStyle.value;
+    latexRender.style.borderColor = borderColor.value;
+    latexRender.style.borderWidth = `${borderWidth.value}px`;
   }
 
-  if (blob) {
-    console.log("Imagem encontrada na área de transferência!");
-    const reader = new FileReader();
-    reader.onload = () => {
-      console.log("Imagem carregada com sucesso!");
-      const imagemPreview = document.createElement("img");
-      imagemPreview.src = reader.result;
-      imagemPreview.alt = "Preview da Imagem";
-      imagemPreview.style.maxWidth = "100%";
-      imagemPreview.style.maxHeight = "100%";
-      imagemPreview.style.objectFit = "contain";
+  textColor.addEventListener("input", updateStyles);
+  backgroundColor.addEventListener("input", updateStyles);
+  externalColor.addEventListener("input", updateStyles);
+  borderColor.addEventListener("input", updateStyles);
+  borderRadius.addEventListener("input", updateStyles);
+  textSize.addEventListener("input", updateStyles);
+  lineStyle.addEventListener("change", updateStyles);
+  borderWidth.addEventListener("input", updateStyles);
 
-      // Remove o texto e adiciona a imagem ao dropzone
-      dropzone.querySelector("p").style.display = "none";
-      dropzone.appendChild(imagemPreview);
-      window.electronAPI.colarImagem({
-        img: reader.result,
-        idioma: idiomaSelecionado,
+  updateStyles()
+
+  latexCode.addEventListener("input", () => {
+    const latex = latexCode.value;
+    latexRender.innerHTML = `\\begin{align}${latex}\\end{align}`;
+
+    MathJax.typesetPromise([latexRender])
+      .then(() => {
+        console.log("MathJax processed successfully!");
+      })
+      .catch((err) => {
+        console.error("Error processing MathJax:", err);
       });
-    };
-    reader.readAsDataURL(blob);
-  } else {
-    console.error("Nenhuma imagem encontrada na área de transferência.");
-  }
-});
+  });
+};
 
-// Recebe o resultado do OCR do processo principal
-window.electronAPI.receberResultadoOCR((_, text) => {
-  resultadoOCR.textContent = text;
-});
+document.body.appendChild(script);

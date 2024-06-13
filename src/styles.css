@@ -13,58 +13,34 @@ body {
 
 .container {
   display: flex;
+  margin-top: 20px;
+  height: 500px;
+  width: 92%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: white;
+  border-radius: 8px;
   gap: 24px;
 }
 
-#dropzone {
-  width: 400px;
-  height: 200px;
-  border: 2px dashed #555;
-  border-radius: 5px;
+#latex-render {
+  border: 0px solid #555;
+  padding: 2px 24px;
+  border-radius: 8px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 18px;
-  color: #ccc;
+  color: black;
   cursor: pointer;
-  background-color: #222;
+  background-color: white;
   transition: background-color 0.3s ease;
-  overflow: hidden;
+  overflow: auto;
   position: relative;
 }
 
-#dropzone p {
-  position: absolute;
-  width: fit-content;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  color: #555;
-}
-
-#dropzone img {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
-}
-
-#dropzone:hover {
-  background-color: #333;
-}
-
-#idioma {
-  margin-top: 10px;
-  padding: 5px;
-  border: 1px solid #555;
-  border-radius: 5px;
-  background-color: #222;
-  color: #ccc;
-}
-
-#resultadoOCR {
+#latex-code {
   width: 90%;
   height: 200px;
   resize: none;
@@ -73,6 +49,16 @@ body {
   font-family: monospace;
   background-color: #222;
   color: #ccc;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  padding: 0 30px;
+  flex-wrap: wrap;
+  color: white;
+  justify-content: center;
+  align-items: center;
 }
 
 .dev {

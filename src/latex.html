@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://polyfill.io https://cdn.jsdelivr.net https://cdn.skypack.dev https://html2canvas.hertzen.com; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' https://cdn.jsdelivr.net;">
+  <title>Criar LaTeX</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [ ['$','$'], ["\\(","\\)"] ],processEscapes: true}});
+  </script>
+</head>
+<body>
+  <div class="container" id="container">
+    <div id="latex-render"></div>
+  </div>
+
+  <textarea id="latex-code"></textarea>
+
+  <div class="controls">
+
+    <div>
+      <label for="text-color">Cor texto:</label>
+      <input type="color" id="text-color" value="#000000"> 
+    </div>
+    <div>
+      <label for="background-color">Cor fundo:</label>
+      <input type="color" id="background-color" value="#ffffff">
+    </div>
+    <div>
+      <label for="external-color">Cor externa:</label>
+      <input type="color" id="external-color" value="#ffffff">
+    </div>
+
+    <div>
+      <label for="border-width">Largura borda:</label>
+      <input type="number" id="border-width" min="0" max="10" value="0">
+    </div>
+    <div>
+      <label for="border-radius">Raio borda:</label>
+      <input type="range" id="border-radius" min="0" max="200" value="8">
+    </div>
+
+    <div>
+      <label for="text-size">Tamanho texto:</label>
+      <input type="range" id="text-size" min="0" max="80" value="16">
+    </div>
+    <div>
+      <label for="line-style">Estilo linha:</label>
+      <select id="line-style">
+        <option value="solid">Sólida</option>
+        <option value="dashed">Tracejada</option>
+        <option value="dotted">Pontilhada</option>
+      </select>
+    </div>
+  
+    <div>
+      <label for="border-color">Cor borda:</label>
+      <input type="color" id="border-color" value="#000000">
+    </div>
+  </div>
+
+  <div>
+    <p class="dev">Shift + L para minimizar ou abrir novamente.</p>
+    <p class="dev">Jeferson Leite - https://github.com/jefersonapps</p>
+  </div>
+
+  <script src="./render.js"></script> 
+</body>
+</html>

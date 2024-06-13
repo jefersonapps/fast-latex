@@ -1,8 +1,8 @@
 {
-  "name": "image-ocr",
-  "productName": "image-ocr",
+  "name": "fast-latex",
+  "productName": "fast-latex",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Um app para renderizar equações curtas ou alinhadas em LaTeX",
   "main": "src/main.js",
   "scripts": {
     "start": "electron-forge start",
@@ -29,10 +29,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "data-uri-to-buffer": "^6.0.2",
+    "dom-to-svg": "^0.12.2",
     "electron-squirrel-startup": "^1.0.1",
     "electron-tray-window": "^1.2.7",
-    "js-base64": "^3.7.7",
-    "tesseract.js": "^5.1.0"
+    "html2canvas": "^1.4.1",
+    "mathjax": "^3.2.2"
   }
 }
