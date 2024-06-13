@@ -1,6 +1,21 @@
 {
-  "icon": "./public/icon.png",
-  "linux": {
-    "category": "Graphics"
+  "productName": "Fast LaTeX",
+  "appId": "com.jefersonapps.fast-latex",
+  "copyright": "Copyright © 2024 Jeferson Nunes",
+  "directories": {
+    "output": "build"
+  },
+  "win": {
+    "target": [
+      "nsis"
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowElevation": true,
+    "installerIcon": "public/icon.png",
+    "installerHeaderIcon": "public/icon.png",
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true
   }
 }
