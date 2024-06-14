@@ -21,7 +21,8 @@ O Fast Latex é um aplicativo desktop de código aberto para renderizar equaçõ
 - Configure o pnpm como gerenciador de pacotes para evitar bugs: https://pnpm.io/installation
 - Rode na pasta raíz do projeto no terminal `pnpm install`, em seguida, rode `pnpm start`
 
-[Download Fast LaTeX v1.0](https://github.com/jefersonapps/fast-latex/releases/download/v1.0/fast-latex-v1.0-linux-x64.zip)
+**Baixe o executável**
+[Download Fast LaTeX v1.0](https://github.com/jefersonapps/fast-latex/releases)
 
 **Como usar**
 
