@@ -43,6 +43,8 @@ body {
 #latex-code {
   width: 90%;
   height: 200px;
+  border-radius: 8px;
+  outline: none;
   resize: none;
   border: 1px solid #555;
   padding: 10px;

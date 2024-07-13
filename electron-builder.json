@@ -6,9 +6,8 @@
     "output": "build"
   },
   "win": {
-    "target": [
-      "nsis"
-    ]
+    "target": ["nsis"],
+    "icon": "public/icon.png"
   },
   "nsis": {
     "oneClick": false,
@@ -17,5 +16,14 @@
     "installerHeaderIcon": "public/icon.png",
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true
+  },
+  "linux": {
+  "target": ["deb", "AppImage"],
+  "category": "Utility",
+  "icon": "public/icons"
+  },
+  "mac": {
+    "target": ["dmg", "zip"],
+    "icon": "public/icon.png"
   }
 }

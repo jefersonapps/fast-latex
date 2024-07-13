@@ -1,32 +1,28 @@
 const { app, Tray, Menu, BrowserWindow, globalShortcut } = require("electron");
-
 const path = require("path");
 
 let tray = null;
-
-let latexWindow = null;
+let latexWindows = [];
 
 const createLatexWindow = () => {
-  latexWindow = new BrowserWindow({
+  const latexWindow = new BrowserWindow({
     width: 800,
     height: 650,
     autoHideMenuBar: true,
-    icon: path.join(__dirname, "../public/icon.png")
+    icon: path.join(__dirname, "../public/icon.png"),
   });
+
   latexWindow.loadFile(path.join(__dirname, "latex.html"));
 
-  globalShortcut.register("Shift+L", () => {
-    if (latexWindow.isVisible()) {
-      latexWindow.hide();
-    } else {
-      latexWindow.show();
+  latexWindow.on("close", (event) => {
+    const index = latexWindows.indexOf(latexWindow);
+    if (index > -1) {
+      latexWindows.splice(index, 1);
     }
+    latexWindow.destroy();
   });
 
-  latexWindow.on("close", (event) => {
-    event.preventDefault();
-    latexWindow?.hide();
-  });
+  latexWindows.push(latexWindow);
 };
 
 const createTray = () => {
@@ -41,9 +37,7 @@ const createTray = () => {
     {
       label: "Sair",
       click: () => {
-        if (latexWindow) {
-          latexWindow.destroy();
-        }
+        latexWindows.forEach((window) => window.destroy());
         app.quit();
       },
     },
@@ -52,13 +46,32 @@ const createTray = () => {
   tray.setContextMenu(contextMenu);
 };
 
+const toggleLatexWindowsVisibility = () => {
+  const allHidden = latexWindows.every((window) => !window.isVisible());
+  latexWindows.forEach((window) => {
+    if (allHidden) {
+      window.show();
+    } else {
+      window.hide();
+    }
+  });
+};
+
 app.whenReady().then(() => {
   createTray();
   app.dock?.hide();
+
+  globalShortcut.register("Control+Alt+L", () => {
+    if (latexWindows.length > 0) {
+      toggleLatexWindowsVisibility();
+    }
+  });
 });
 
 app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") {
-    app.quit();
-  }
+  latexWindows.forEach((window) => window.hide());
+});
+
+app.on("will-quit", () => {
+  globalShortcut.unregisterAll();
 });
